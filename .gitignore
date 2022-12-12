@@ -4,5 +4,6 @@
 .Ruserdata
 .ipynb_checkpoints
 __pycache__/
+*.py[cod]
 secret_key.py
 secret_key.R
