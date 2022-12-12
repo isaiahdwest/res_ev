@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 .ipynb_checkpoints
-__pychache__
+__pychache__/
 secret_key.py
 secret_key.R
