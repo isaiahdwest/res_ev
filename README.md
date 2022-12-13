@@ -12,7 +12,6 @@ Like fleets we should have the goal of presenting a product to stake holders, ho
   - EV/EVSE database
   - A function to pull latest information from EPA
   - A robust VIN Decoder 
-  - I'd like to target more residential stuff but tbh I have no clue what I'm doing here
   - Data driven defaults for vehicles, evses, make ready costs
   - consider more application for HDV/MDVs?
   - News about EVs/incorporate incentives
