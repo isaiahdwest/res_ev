@@ -40,5 +40,7 @@ def nearest_ev_stations(params = {"location":"20500"}, max_distance = 5):
                        "facility_type", "latitude",
                        "longitude", "ev_connector_types",
                        "ev_dc_fast_num", "ev_level2_evse_num", 
-                       "ev_pricing", "distance"]
+                       "ev_pricing",
+                       "intersection_directions",
+                       "distance"]
     return fuel_stations[fuel_stations.distance <= max_distance][relevant_fields], res.json()["latitude"], res.json()["longitude"]
