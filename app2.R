@@ -5,16 +5,17 @@ library(janitor)
 library(reticulate)
 source("secret_key.R")
 
-# setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
+setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
 api_key <- gway_api
 
+# KEEP COMMENTED OUT
 # path_to_python <- "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3"
 # use_python(path_to_python)
 
-# requests <- import_from_path("requests", path = "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/")
-requests <- import("requests")
-# pd <- import_from_path("pandas", path = "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/")
-pd <- import("pandas")
+requests <- import_from_path("requests", path = "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/")
+# requests <- import("requests")
+pd <- import_from_path("pandas", path = "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/")
+# pd <- import("pandas")
 source_python("nearest_ev_stations.py")
 
 ui <- fluidPage(
