@@ -23,7 +23,7 @@ e_cent <- incent %>%
   unnest(c("county_ids", "title")) %>%
   filter(technologies == "ELEC",
          type %in% inc_type) %>%
-  left_join(. %>% pull(references) %>% bind_rows()) %>%
+  left_join(incent %>% pull(references) %>% bind_rows()) %>%
   select(-topics,
          -text,
          -enacted_date)

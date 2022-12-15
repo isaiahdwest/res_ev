@@ -4,8 +4,9 @@ library(googleway)
 library(janitor)
 library(reticulate)
 source("secret_key.R")
+options(tidygeocoder.quiet = TRUE)
 
-setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
+# setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
 api_key <- gway_api
 
 # KEEP COMMENTED OUT
@@ -30,6 +31,12 @@ ui <- fluidPage(
       width = 9,
       google_mapOutput(outputId = "map")
     )
+  ),
+  tags$h1("Possible Incentives & Rebates"),
+  fluidRow(
+    column(12,
+      dataTableOutput("incentive_table")
+    )
   )
 )
 
@@ -48,7 +55,7 @@ server <- function(input, output) {
                              stringsAsFactors = FALSE) %>%
       mutate(q = paste0(latitude, ",", longitude))
 
-    api_res %>%
+    map_data <- api_res %>%
       pluck(1) %>%
       mutate(
         link = paste0("https://www.google.com/maps/dir/?api=1&origin=",
@@ -69,7 +76,22 @@ server <- function(input, output) {
              color = "red") %>%
       bind_rows(start_info)
 
+    inc_data <- start_info %>%
+      reverse_geocode(lat = latitude,
+                      long = longitude,
+                      full_results = TRUE) %>%
+      clean_names() %>%
+      mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ",")) %>%
+      pull(state_q) %>%
+      get_incentives(base_url_inc,
+                     jurisdiction = .,
+                     user_type = "IND",
+                     technology = "ELEC",
+                     incentive_type = "GNT,TAX,LOANS,RBATE,TOU,EXEM,OTHER")
+
   })
+
+
   output$map <- renderGoogle_map({
     google_map(data = data(), key = api_key) %>%
       add_markers(lat = "latitude",
