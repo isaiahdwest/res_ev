@@ -3,8 +3,12 @@ library(tidyverse)
 library(googleway)
 library(janitor)
 library(reticulate)
+library(tidygeocoder)
+library(DT)
 source("secret_key.R")
-options(tidygeocoder.quiet = TRUE)
+source("pull_incentive_data.R")
+options(tidygeocoder.quiet = TRUE,
+        tidygeocoder.progress = FALSE)
 
 # setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
 api_key <- gway_api
@@ -27,15 +31,15 @@ ui <- fluidPage(
       textInput(inputId = "inputAddress", label = "Input an Address:",
                 value = "600 Pennsylvania Avenue NW DC")
     ),
-    column(
-      width = 9,
-      google_mapOutput(outputId = "map")
-    )
+      column(
+        width = 9,
+        google_mapOutput(outputId = "map")
+      )
   ),
   tags$h1("Possible Incentives & Rebates"),
   fluidRow(
-    column(12,
-      dataTableOutput("incentive_table")
+    column(9,
+           dataTableOutput("incentive_table")
     )
   )
 )
@@ -53,9 +57,14 @@ server <- function(input, output) {
                              longitude = api_res[[3]],
                              color = "green",
                              stringsAsFactors = FALSE) %>%
-      mutate(q = paste0(latitude, ",", longitude))
+      mutate(q = paste0(latitude, ",", longitude)) %>%
+      reverse_geocode(lat = latitude,
+                      long = longitude,
+                      full_results = TRUE) %>%
+      clean_names() %>%
+      mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ","))
 
-    map_data <- api_res %>%
+    api_res %>%
       pluck(1) %>%
       mutate(
         link = paste0("https://www.google.com/maps/dir/?api=1&origin=",
@@ -73,21 +82,8 @@ server <- function(input, output) {
           link_text,
           '</a>'
         ),
-             color = "red") %>%
+        color = "red") %>%
       bind_rows(start_info)
-
-    inc_data <- start_info %>%
-      reverse_geocode(lat = latitude,
-                      long = longitude,
-                      full_results = TRUE) %>%
-      clean_names() %>%
-      mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ",")) %>%
-      pull(state_q) %>%
-      get_incentives(base_url_inc,
-                     jurisdiction = .,
-                     user_type = "IND",
-                     technology = "ELEC",
-                     incentive_type = "GNT,TAX,LOANS,RBATE,TOU,EXEM,OTHER")
 
   })
 
@@ -100,6 +96,22 @@ server <- function(input, output) {
                   # mouse_over = "station_name",
                   info_window = "info_show")
   })
+
+  output$incentive_table <- DT::renderDataTable(
+    DT::datatable({
+      data() %>%
+        filter(!is.na(state_q)) %>%
+        pull(state_q) %>%
+        get_incentives(base_url_inc,
+                       jurisdiction = .,
+                       user_type = "IND",
+                       technology = "ELEC",
+                       incentive_type = "GNT,TAX,LOANS,RBATE,TOU,EXEM,OTHER") %>%
+        select(state, title, starts_with("reference"))
+    },
+    escape = FALSE)
+
+  )
 }
 
 shinyApp(ui = ui, server = server)

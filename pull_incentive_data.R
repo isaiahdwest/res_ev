@@ -31,7 +31,8 @@ query_inc_api <- function(url, ...) {
 }
 
 get_incentives <- function(url = base_url_inc, ...) {
-
+  print("get_incentives")
+  print("query_inc_api")
   res <- query_inc_api(url, ...)
 
   json_res <- res$content %>% rawToChar() %>% fromJSON()
@@ -41,7 +42,8 @@ get_incentives <- function(url = base_url_inc, ...) {
     unnest(references) %>%
     unnest(technologies) %>%
     filter(technologies == "ELEC") %>%
-    mutate(reference = paste0(description, ": ", url)) %>%
+    mutate(reference = paste0("<a href = '", url, "' target = '_blank'>",
+                              description, "</a>")) %>%
     select(-c("description", "url")) %>%
     group_by(id) %>%
     mutate(reference_num = paste0("reference_", row_number())) %>%
