@@ -31,8 +31,8 @@ query_inc_api <- function(url, ...) {
 }
 
 get_incentives <- function(url = base_url_inc, ...) {
-  print("get_incentives")
-  print("query_inc_api")
+  # print("get_incentives")
+  # print("query_inc_api")
   res <- query_inc_api(url, ...)
 
   json_res <- res$content %>% rawToChar() %>% fromJSON()

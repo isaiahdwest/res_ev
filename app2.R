@@ -60,7 +60,9 @@ server <- function(input, output) {
       mutate(q = paste0(latitude, ",", longitude)) %>%
       reverse_geocode(lat = latitude,
                       long = longitude,
-                      full_results = TRUE) %>%
+                      full_results = TRUE,
+                      progress_bar = FALSE,
+                      quiet = TRUE) %>%
       clean_names() %>%
       mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ","))
 
@@ -76,6 +78,8 @@ server <- function(input, output) {
                       "&travelmode=driving"),
         link_text = paste(toupper(street_address), state),
         info_show = paste0(
+          '<p>', station_name, ':\n', '</p>',
+          # '<br></br>',
           '<a href="',
           link,
           '" target="_blank">',
