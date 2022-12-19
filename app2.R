@@ -31,10 +31,10 @@ ui <- fluidPage(
       textInput(inputId = "inputAddress", label = "Input an Address:",
                 value = "600 Pennsylvania Avenue NW DC")
     ),
-      column(
-        width = 9,
-        google_mapOutput(outputId = "map")
-      )
+    column(
+      width = 9,
+      google_mapOutput(outputId = "map")
+    )
   ),
   tags$h1("Possible Incentives & Rebates"),
   fluidRow(
@@ -107,11 +107,26 @@ server <- function(input, output) {
                        user_type = "IND",
                        technology = "ELEC",
                        incentive_type = "GNT,TAX,LOANS,RBATE,TOU,EXEM,OTHER") %>%
-        select(state, title, starts_with("reference"))
+        mutate(reference_link = get_afv_url(id),
+               title = paste0("<a href='", reference_link, "' target='_blank'>",
+                              title,
+                              "</a>")) %>%
+        select(State = state, Title = title, Description = description)
     },
-    escape = FALSE)
-
-  )
+    extensions = c("Scroller", "Buttons"),
+    escape = FALSE,
+    options = list(
+      autoWidth = TRUE,
+      dom = "Bfrtip",
+      buttons = list(list(extend = "colvis", columns = c(3))),
+      scrollX = 400,
+      scrollY = 400,
+      scroller = TRUE,
+      columnDefs = list(
+        list(width = "500px", targets = c(2)),
+        list(width = "100px", targets = c(1)),
+        list(visible = FALSE, targets = c(3))))
+    ))
 }
 
 shinyApp(ui = ui, server = server)

@@ -53,3 +53,7 @@ get_incentives <- function(url = base_url_inc, ...) {
     select(id, state, title, description = plaintext,
            technologies, starts_with("reference_"))
 }
+
+get_afv_url <- function(id) {
+  paste0("https://afdc.energy.gov/laws/", id)
+}
