@@ -3,6 +3,7 @@ library(glue)
 library(jsonlite)
 library(tidyverse)
 library(lubridate)
+library(rvest)
 source("secret_key.R")
 
 base_vpic_url <- "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"
@@ -48,15 +49,15 @@ get_vin_info <- function(vin, ...) {
 }
 
 
-# make / model / year?
-# make -> first model recent year
-# make, model -> most recent year
-# make model year
+# make / model / modelyear?
+# make -> first model recent modelyear
+# make, model -> most recent modelyear
+# make model modelyear
 # drop down of makes]
-# drop down of models/years
+# drop down of models/modelyears
 
-get_models <- function(make, year = NULL) {
-  if (is.null(year)) {
+get_models <- function(make, modelyear = NULL) {
+  if (is.null(modelyear)) {
     url <- paste0("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/",
                   make,
                   "?format=json")
@@ -64,7 +65,7 @@ get_models <- function(make, year = NULL) {
     url <- paste0("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/",
                   make,
                   "/modelyear/",
-                  year,
+                  modelyear,
                   "?format=json")
   }
 
@@ -102,10 +103,11 @@ get_wmi <- function(make, single_wmi = TRUE) {
                              "Incomplete Vehicle",
                              "Truck") ~ 2,
           TRUE ~ 3
-        )
+        ),
+        country_prior = ifelse(grepl("USA", Country), 1, 2)
       ) %>%
-      filter(grepl("USA", Country)) %>%
       arrange(
+        country_prior,
         priority,
         desc(CreatedOn)
       ) %>%
@@ -113,5 +115,56 @@ get_wmi <- function(make, single_wmi = TRUE) {
   } else {
     res
   }
+}
+
+# HUH
+# get_vins
+# httr::set_config(httr::config(ssl_verifypeer = FALSE))
+# res <- GET("https://epicvin.com/vin-lookup/honda/odyssey/2019/")
+#
+# a_text <- content(res) %>%
+#   html_nodes("a") %>%
+#   html_text() %>%
+#   str_extract_all("[A-Z0-9]+")
+#
+# vin_strs <- a_text[lengths(a_text) == 1] %>% unlist()
+
+# vin_strs[vin_strs %>% nchar() >= 10]
+
+
+get_vins <- function(make, model, modelyear = year(Sys.Date())) {
+
+  url <- paste0("https://epicvin.com/vin-lookup/",
+                make,
+                "/",
+                model,
+                "/",
+                modelyear,
+                "/")
+
+  # print(url)
+
+  res <- GET(url)
+
+  a_text <- content(res) %>%
+    html_nodes("a") %>%
+    html_text() %>%
+    str_extract_all("[A-Z0-9]+")
+
+  vin_strs <- a_text[lengths(a_text) == 1] %>% unlist()
+
+  f_url <- paste0(url, vin_strs[vin_strs %>% nchar() >= 10])[1]
+
+  res_02 <- GET(f_url)
+
+  content(res_02) %>%
+    html_nodes("a")
+
+}
+
+make_model_q <- function(make, model, modelyear = year(Sys.Date())) {
+  get_vins(make, model, modelyear) %>%
+    pluck(2) %>%
+    get_vin_info(modelyear = modelyear)
 }
 
