@@ -7,4 +7,5 @@ __pycache__/
 *.py[cod]
 secret_key.py
 secret_key.R
-.*
+actions-runner/
+.DS_Store
