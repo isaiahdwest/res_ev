@@ -1,9 +1,9 @@
 import requests
 import pandas as pd
-import secret_key
+# import secret_key
 
 # Base API URL
-base_url = f"https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key={secret_key.afv_api}"
+base_url = f"https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key={afv_api}"
 
 # format_params()
 # - Takes a dictionary of AFV API commands and returns a single string to be added
