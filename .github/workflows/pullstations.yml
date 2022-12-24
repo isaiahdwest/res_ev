@@ -17,14 +17,14 @@ jobs:
         with:
           python-version: 3.8 #install the python needed
       - name: Overwrite file
-        uses: "isaiahdwest/write-file-action@master"
+        uses: "isaiahdwest/res_ev/write-file-action@master"
         with:
           path: pull_dc_chargers.py
           write-mode: overwrite
           contents: |
             console.log('some contents')
       - name: Commit & Push
-        uses: isaiahdwest/push@v1.3
+        uses: isaiahdwest/res_ev/push@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
