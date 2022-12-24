@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: resev-self-hosted
+    runs-on: self-hosted
 
     steps:
       - name: checkout repo content
