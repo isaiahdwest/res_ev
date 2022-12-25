@@ -15,13 +15,13 @@ jobs:
       - name: Overwrite file
         uses: "DamianReeves/write-file-action@master"
         with:
-          path: pull_dc_chargers.py
+          path: path/to/file.js
           write-mode: overwrite
           contents: |
             console.log('some contents')
 
       - name: Commit & Push
-        uses: isaiahdwest/res_ev/push
+        uses: Andro999b/push@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
