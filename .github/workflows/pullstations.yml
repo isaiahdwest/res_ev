@@ -1,35 +1,29 @@
-# is this not getting pushed? s
-name: pullstations
+name: Overwrite some file
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: self-hosted
-
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner.
-      - name: setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8 #install the python needed
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Overwrite file
-          uses: "DamianReeves/write-file-action@master"
+        uses: "DamianReeves/write-file-action@master"
         with:
           path: pull_dc_chargers.py
           write-mode: overwrite
           contents: |
             console.log('some contents')
-      - name: Commit files
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -a -m "Add changes"
-      - name: Push changes
-        uses: isaiahdwest/res_ev/github-push-action@main
+
+      - name: Commit & Push
+        uses: isaiahdwest/res_ev/push@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: main
+          force: true
+          message: 'Overwritten by Github Actions - ${date}'
