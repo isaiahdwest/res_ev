@@ -1,8 +1,8 @@
-name: scraper-san-juan-gobierno
+name: pullStations
 
 on:
-  push:
-    branches: [ main ]
+  schedule:
+    - cron: '*/30 * * * *' # runs at 12:00 UTC everyday
 
 jobs:
   build:
