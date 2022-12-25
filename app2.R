@@ -11,7 +11,7 @@ options(tidygeocoder.quiet = TRUE,
         tidygeocoder.progress = FALSE)
 
 # setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
-api_key <- gway_api
+api_key <- Sys.getenv("GWAY_API")
 
 # KEEP COMMENTED OUT
 # path_to_python <- "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3"

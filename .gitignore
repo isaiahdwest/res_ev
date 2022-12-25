@@ -9,3 +9,4 @@ secret_key.py
 secret_key.R
 actions-runner/
 .DS_Store
+.Renviron
