@@ -4,7 +4,7 @@ library(jsonlite)
 library(tidyverse)
 library(lubridate)
 library(rvest)
-source("secret_key.R")
+# source("secret_key.R")
 
 base_vpic_url <- "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"
 

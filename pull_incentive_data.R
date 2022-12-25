@@ -4,6 +4,8 @@ library(jsonlite)
 library(tidyverse)
 # source("secret_key.R")
 
+httr::set_config(config(ssl_verifypeer = 0L))
+
 message("loaded libraries")
 afv_api <- Sys.getenv("AFV_API")
 
@@ -33,10 +35,15 @@ query_inc_api <- function(url, ...) {
   GET(api_url)
 }
 
-get_incentives <- function(url = base_url_inc, ...) {
+get_incentives <- function(url = base_url_inc, ind = TRUE, ...) {
+  # print(afv_api) %>%
   # print("get_incentives")
   # print("query_inc_api")
-  res <- query_inc_api(url, ...)
+  if (ind) {
+    res <- query_inc_api(url, user_type = "IND", ...)
+  } else {
+    res <- query_inc_api(url, ...)
+  }
 
   json_res <- res$content %>% rawToChar() %>% fromJSON()
 

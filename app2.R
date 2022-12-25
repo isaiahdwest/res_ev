@@ -5,13 +5,15 @@ library(janitor)
 library(reticulate)
 library(tidygeocoder)
 library(DT)
-source("secret_key.R")
+# source("secret_key.R")
 source("pull_incentive_data.R")
+# source(".Renviron") %>%
 options(tidygeocoder.quiet = TRUE,
         tidygeocoder.progress = FALSE)
 
 # setwd("/Users/isaiahwestphalen/Desktop/didactic-octo-journey")
 api_key <- Sys.getenv("GWAY_API")
+afv_api <- Sys.getenv("AFV_API")
 
 # KEEP COMMENTED OUT
 # path_to_python <- "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3"
@@ -64,7 +66,8 @@ server <- function(input, output) {
                       progress_bar = FALSE,
                       quiet = TRUE) %>%
       clean_names() %>%
-      mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ","))
+      mutate(state_q = iso3166_2_lvl4 %>% str_replace("-", ","),
+             states = str_split(state_q, ","))
 
     api_res %>%
       pluck(1) %>%
@@ -103,14 +106,19 @@ server <- function(input, output) {
 
   output$incentive_table <- DT::renderDataTable(
     DT::datatable({
-      data() %>%
+
+      incs <- readr::read_csv("incentives.csv")
+
+      states <- data() %>%
         filter(!is.na(state_q)) %>%
-        pull(state_q) %>%
-        get_incentives(base_url_inc,
-                       jurisdiction = .,
-                       user_type = "IND",
-                       technology = "ELEC",
-                       incentive_type = "GNT,TAX,LOANS,RBATE,TOU,EXEM,OTHER") %>%
+        pull(state_q)
+
+      incs %>%
+        mutate(states = states %>% str_split(",")) %>%
+        unnest(states) %>%
+        filter(
+          state == states
+        ) %>%
         mutate(reference_link = get_afv_url(id),
                title = paste0("<a href='", reference_link, "' target='_blank'>",
                               title,
