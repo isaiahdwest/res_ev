@@ -2,8 +2,9 @@ library(httr)
 library(glue)
 library(jsonlite)
 library(tidyverse)
-source("secret_key.R")
+# source("secret_key.R")
 
+afv_api <- Sys.getenv("AFV_API")
 base_url_inc <-  paste0("https://developer.nrel.gov/api/transportation-incentives-laws/v1.json?api_key=",
                 afv_api)
 

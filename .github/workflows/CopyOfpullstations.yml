@@ -1,0 +1,36 @@
+name: pullStations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+      - name: set up r
+        uses: actions/checkout@v3
+        uses: r-lib/actions/setup-r@v2
+        uses: r-lib/actions/setup-renv@v2
+
+      - name: execute r script
+        env:
+          AFV_API: ${{ secrets.AFV_API }}
+        run: r cron_inc_pull.R
+
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "update data" -a
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
