@@ -14,6 +14,9 @@ jobs:
         uses: actions/checkout@v3 # checkout the repository content to github runner
       - name: set up r
         uses: r-lib/actions/setup-r@v2
+      - name: set up curl dep
+        run: |
+          r system("sudo apt-get install libcurl4-openssl-dev")
       - name: set up renv
         uses: r-lib/actions/setup-renv@v2
 
