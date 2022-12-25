@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: 3.8 #install the python needed
       - name: Overwrite file
-        uses: "actions/write-file-action@v2"
+          uses: "DamianReeves/write-file-action@master"
         with:
           path: pull_dc_chargers.py
           write-mode: overwrite
