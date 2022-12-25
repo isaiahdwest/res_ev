@@ -17,6 +17,7 @@ jobs:
       - name: set up curl dep
         run: |
           sudo apt-get install libcurl4-openssl-dev
+          sudo apt-get install libjq-dev
       - name: set up renv
         uses: r-lib/actions/setup-renv@v2
       - name: execute r script
