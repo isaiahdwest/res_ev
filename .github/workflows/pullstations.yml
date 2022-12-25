@@ -1,29 +1,41 @@
-name: Overwrite some files
+name: scraper-san-juan-gobierno
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
 
-      - name: Overwrite file
-        uses: "DamianReeves/write-file-action@master"
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+
+      - name: setup python
+        uses: actions/setup-python@v2
         with:
-          path: path/to/file.js
-          write-mode: overwrite
-          contents: |
-            console.log('some contents')
+          python-version: '3.8' # install the python version needed
 
-      - name: Commit & Push
-        uses: Andro999b/push@v1.3
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: execute py script # run sj-gobierno.py to get the latest data
+        env:
+          AFV_API: ${{ secrets.AFV_API }}
+        run: python pull_dc_chargers.py
+
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "update data" -a
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          force: true
-          message: 'Overwritten by Github Actions - ${date}'

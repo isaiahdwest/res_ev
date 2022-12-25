@@ -1,7 +1,8 @@
 import requests
 import pandas as pd
-# import secret_key
+import os
 
+afv_api = os.environ.get("AFV_API")
 # Base API URL
 base_url = f"https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key={afv_api}"
 
