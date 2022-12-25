@@ -1,3 +1,4 @@
+message("start cron")
 source("pull_incentive_data.R")
 
 get_incentives() %>%
