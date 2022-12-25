@@ -1,22 +1,22 @@
 ,street_address,city,state,zip,access_code,access_days_time,cards_accepted,fuel_type_code,status_code,station_name,facility_type,latitude,longitude,ev_connector_types,ev_dc_fast_num,ev_level2_evse_num,ev_pricing,intersection_directions,distance,time_update
-0,1650 Pennsylvania Avenue NW,Washington,DC,20502,public,24 hours daily,,ELEC,T,WHITE HOUSE EOP-OA-EMPLOYEE,,38.897031,-77.038726,['J1772'],,2,,,0.14802,03:41:34
-1,655 15th Street NW,Washington,DC,20005,public,24 hours daily,,ELEC,E,Metropolitan Square Garage,,38.898011,-77.03362,['J1772'],,8,$1.00-$5.00/Hr Variable Parking Fee,,0.16019,03:41:34
-2,1900 E St NW,Washington,DC,20415,private,,,ELEC,E,OPM Motor Pool,FED_GOV,38.8948,-77.0369,['J1772'],,1,Free,,0.24557,03:41:34
-3,923  16th St NW,Washington,DC,20006,public,24 hours daily; for customer use only,,ELEC,E,The St. Regis Washington D.C. - Tesla Destination,HOTEL,38.902005,-77.036061,['TESLA'],,1,Free,,0.25355,03:41:34
-4,1700  New York Ave,Washington,DC,20006,public,24 hours daily; pay lot; see valet for access,,ELEC,E,1700 New York Avenue - Tesla Destination,,38.895936,-77.040432,"['J1772', 'TESLA']",,2,Free,,0.26701,03:41:34
-5,1666 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1666K,,38.902162,-77.038098,['J1772'],,2,,,0.27571,03:41:34
-6,1400 I Street NW,Washington,DC,20005,public,24 hours daily,,ELEC,E,1400 Eye Street,,38.901006,-77.032358,['J1772'],,1,$1.50/Hr Parking Fee,Closed Saturdays & Sundays,0.29132,03:41:34
-7,815 14th St NW,Washington,DC,20005,public,24 hours daily; see valet for access,,ELEC,E,Hilton Garden Inn Washington DC Downtown - Tesla Destination,HOTEL,38.9006,-77.031736,"['J1772', 'TESLA']",,4,Free,,0.30283,03:41:34
-8,1331 F Street Northwest,Washington,DC,20004,public,,,ELEC,E,"531705 : 1331 F Street, NW",,38.897643,-77.030936,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.30706,03:41:34
-9,1801 Pennsylvania Avenue Northwest,Washington,DC,20006,public,,,ELEC,E,1801 Pennsylvania Avenue Northwest,,38.900421,-77.041883,['J1772'],,1,FREE,,0.32052,03:41:34
-10,1700 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1700K,,38.902275,-77.039946,['J1772'],,2,,,0.32652,03:41:34
+0,1650 Pennsylvania Avenue NW,Washington,DC,20502,public,24 hours daily,,ELEC,T,WHITE HOUSE EOP-OA-EMPLOYEE,,38.897031,-77.038726,['J1772'],,2,,,0.14802,03:52:55
+1,655 15th Street NW,Washington,DC,20005,public,24 hours daily,,ELEC,E,Metropolitan Square Garage,,38.898011,-77.03362,['J1772'],,8,$1.00-$5.00/Hr Variable Parking Fee,,0.16019,03:52:55
+2,1900 E St NW,Washington,DC,20415,private,,,ELEC,E,OPM Motor Pool,FED_GOV,38.8948,-77.0369,['J1772'],,1,Free,,0.24557,03:52:55
+3,923  16th St NW,Washington,DC,20006,public,24 hours daily; for customer use only,,ELEC,E,The St. Regis Washington D.C. - Tesla Destination,HOTEL,38.902005,-77.036061,['TESLA'],,1,Free,,0.25355,03:52:55
+4,1700  New York Ave,Washington,DC,20006,public,24 hours daily; pay lot; see valet for access,,ELEC,E,1700 New York Avenue - Tesla Destination,,38.895936,-77.040432,"['J1772', 'TESLA']",,2,Free,,0.26701,03:52:55
+5,1666 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1666K,,38.902162,-77.038098,['J1772'],,2,,,0.27571,03:52:55
+6,1400 I Street NW,Washington,DC,20005,public,24 hours daily,,ELEC,E,1400 Eye Street,,38.901006,-77.032358,['J1772'],,1,$1.50/Hr Parking Fee,Closed Saturdays & Sundays,0.29132,03:52:55
+7,815 14th St NW,Washington,DC,20005,public,24 hours daily; see valet for access,,ELEC,E,Hilton Garden Inn Washington DC Downtown - Tesla Destination,HOTEL,38.9006,-77.031736,"['J1772', 'TESLA']",,4,Free,,0.30283,03:52:55
+8,1331 F Street Northwest,Washington,DC,20004,public,,,ELEC,E,"531705 : 1331 F Street, NW",,38.897643,-77.030936,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.30706,03:52:55
+9,1801 Pennsylvania Avenue Northwest,Washington,DC,20006,public,,,ELEC,E,1801 Pennsylvania Avenue Northwest,,38.900421,-77.041883,['J1772'],,1,FREE,,0.32052,03:52:55
+10,1700 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1700K,,38.902275,-77.039946,['J1772'],,2,,,0.32652,03:52:55
 11,"1401 I Street, #515",Washington,DC,20005,public,,,ELEC,E,PI Lower Ramp,,38.90169,-77.032248,['J1772'],,2,$1.00-$2.00/Hr Variable Parking Fee,"6AM-6PM $2.00 an hr
-6PM-6AM $1.00 an hr",0.32727,03:41:34
-12,1818 H S NW,Washington,DC,20433,private,Employee use only,,ELEC,E,World Bank,OFFICE_BLDG,38.898455,-77.042721,['J1772'],,4,,,0.33218,03:41:34
-13,1667 K Street Northwest,Washington,DC,20006,public,,,ELEC,E,"531706 : 1667 K Street, NW",,38.903018,-77.038133,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.33298,03:41:34
-14,1400 K Street Northwest,Washington,DC,20005,public,,,ELEC,E,1400 K St NW,,38.902161,-77.032294,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.34926,03:41:34
-15,1875 Pennsylvania Avenue Northwest,Washington,DC,20006,public,,,ELEC,E,1875 Pennsylvania Ave NW,,38.900505,-77.042503,['J1772'],,2,FREE,,0.35316,03:41:34
-16,1717 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1717K,,38.902774,-77.040063,['J1772'],,2,,,0.35886,03:41:34
-17,600 13th Street N.W.,Washington,DC,20005,public,,,ELEC,E,600 Thirteenth,,38.89765,-77.029923,['J1772'],,4,$0.25/kWh Energy Fee,,0.36101,03:41:34
-18,1015 15th Street NW,Washington,DC,20005,public,,,ELEC,E,"1015 15th Street, Inc.",,38.903316,-77.033957,['J1772'],,2,FREE,,0.37018,03:41:34
-19,1050 17th Street Northwest,Washington,DC,20036,public,,,ELEC,E,1050 17th,,38.903444,-77.03879,['J1772'],,4,$1.00/Hr Parking Fee,,0.37138,03:41:34
+6PM-6AM $1.00 an hr",0.32727,03:52:55
+12,1818 H S NW,Washington,DC,20433,private,Employee use only,,ELEC,E,World Bank,OFFICE_BLDG,38.898455,-77.042721,['J1772'],,4,,,0.33218,03:52:55
+13,1667 K Street Northwest,Washington,DC,20006,public,,,ELEC,E,"531706 : 1667 K Street, NW",,38.903018,-77.038133,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.33298,03:52:55
+14,1400 K Street Northwest,Washington,DC,20005,public,,,ELEC,E,1400 K St NW,,38.902161,-77.032294,['J1772'],,4,$0.00-$10.00/Hr Variable Parking Fee,,0.34926,03:52:55
+15,1875 Pennsylvania Avenue Northwest,Washington,DC,20006,public,,,ELEC,E,1875 Pennsylvania Ave NW,,38.900505,-77.042503,['J1772'],,2,FREE,,0.35316,03:52:55
+16,1717 K St NW,Washington,DC,20006,public,24 hours daily,,ELEC,E,JBG SMITH 1717K,,38.902774,-77.040063,['J1772'],,2,,,0.35886,03:52:55
+17,600 13th Street N.W.,Washington,DC,20005,public,,,ELEC,E,600 Thirteenth,,38.89765,-77.029923,['J1772'],,4,$0.25/kWh Energy Fee,,0.36101,03:52:55
+18,1015 15th Street NW,Washington,DC,20005,public,,,ELEC,E,"1015 15th Street, Inc.",,38.903316,-77.033957,['J1772'],,2,FREE,,0.37018,03:52:55
+19,1050 17th Street Northwest,Washington,DC,20036,public,,,ELEC,E,1050 17th,,38.903444,-77.03879,['J1772'],,4,$1.00/Hr Parking Fee,,0.37138,03:52:55
