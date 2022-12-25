@@ -2,7 +2,7 @@ name: pullStations
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # runs at 12:00 UTC everyday
+    - cron: '* * * * *' # runs at 12:00 UTC everyday
 
 jobs:
   build:
