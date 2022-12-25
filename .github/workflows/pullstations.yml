@@ -21,7 +21,7 @@ jobs:
             console.log('some contents')
 
       - name: Commit & Push
-        uses: isaiahdwest/res_ev/push@v1.3
+        uses: isaiahdwest/res_ev/push
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
