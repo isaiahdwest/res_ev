@@ -23,7 +23,9 @@ jobs:
       - name: execute r script
         env:
           AFV_API: ${{ secrets.AFV_API }}
-        run: r cron_inc_pull.R
+        run: |
+          source("cron_inc_pull.R")
+        shell: Rscript {0}
 
       - name: commit files
         run: |
