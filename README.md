@@ -1,5 +1,5 @@
 # - Residential PEV Tool - 
-## By Isaiah Westphalen
+
 <p>
 The Goal of this repository is to produce a tool that will guide potential (residential/personal use) PEV buyers on what options are available to them, navigating incentives, and other misc. bits of info. 
 
